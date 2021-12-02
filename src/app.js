@@ -77,7 +77,7 @@ requests(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b4183a
   router.post("/city_name" , (req,res)=>{
     const name= req.body.cityname;
     res.writeHead(301,
-      {Location: `http://localhost:3000/?city=${name}`}
+      {Location: `https://bjrweatherforecast.herokuapp.com/?city=${name}`}
     );
     res.end();
        });
