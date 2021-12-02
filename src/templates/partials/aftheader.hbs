@@ -1,0 +1,285 @@
+<head>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+  .text-indigo-500 {
+    --tw-text-opacity: 1;
+    /* color: rgba(99,102,241,var(--tw-text-opacity)); */
+    color: black;
+}
+</style>
+<style>
+    /* Full-width input fields */
+.inputBox{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.subbutton {
+  background-color:black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 2px solid black;
+  border-radius:5px;
+  cursor: pointer;
+  width: 100%;
+  transition:0.3s;
+}
+.subbutton:hover{
+color:black;
+background-color:white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+color:white;
+  width: auto;
+  padding: 10px 18px;
+  border:2px solid black;
+  border-radius:5px;
+  background-color: black;
+  transition:0.3s
+}
+.cancelbtn:hover{
+color:black;
+background-color: transparent;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+.avatar {
+  font-size: 60px;
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.password {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+.modal2 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+@media only screen  and (max-width:600px){
+  .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+}
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.password {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+    
+    /* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  .loginopen{
+    display: block;
+  }
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+  }
+  
+  /* Fade in tabs */
+  @-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+.mt-3{
+  color: black;
+}
+svg.text-indigo-500.w-6.h-6.flex-shrink-0.mr-4{
+  color: black;
+}
+.fontlogo{
+    font-size: 45px;
+    padding-bottom: 10px;
+    color: black;
+}
+.far{
+  color: black;
+}
+.fas{
+  color: black;
+}
+.py-24 {
+/* padding-top: 6rem; */
+padding-bottom: 6rem;
+padding-top: 0rem !important;
+}
+.forpad{
+padding-top: 6rem !important;
+}
+.object-cover:hover{
+    scale: 1.1;
+}
+.bg-indigo-500{
+  background-color: black;
+  border:2px solid black;
+  transition: 0.3s;
+}
+.bg-indigo-500:hover{
+  color: black;
+  background-color: transparent;
+  border:2px solid black
+}
+.login{
+  display: none;
+}
+.bjrlogo{
+  transform: scale(1);
+  animation: logo_ani 3s infinite;
+}
+@keyframes logo_ani {
+  0%{transform: scale(1);}
+  50%{transform: scale(1.2);}
+  100%{transform: scale(1);}
+}
+  </style>
+<header class="text-gray-600 body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a href="/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+     
+    
+      <i class="fas fa-cloud-sun bjrlogo" style="font-size: 20px;"></i>
+      <span class="ml-3 text-xl">BJR Weather Forecast</span>
+    </a>
+    <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+      <a class="mr-5 hover:text-gray-900" href="/account">Account</a>
+      <a class="mr-5 hover:text-gray-900" href="/">Home</a>
+      <a class="mr-5 hover:text-gray-900" href="/about">About</a>
+      <a class="mr-5 hover:text-gray-900" href="/contact">Contact Us</a>
+      <a class="mr-5 hover:text-gray-900" href="/blog">Blog</a>
+      <a href="http://127.0.0.1:3000/weatherforecast" class="mr-5 hover:text-gray-900">Weather Forecast</a>
+    </nav>
+   <a href="/logout"> <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" style="transition: 0.3s;">LOGOUT<i class="fas fa-sign-in-alt" style="font-size: 20px;color:black;padding-left:3px"></i></button></a>
+  </div>
+</header>

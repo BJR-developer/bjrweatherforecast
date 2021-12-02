@@ -1,0 +1,869 @@
+<html lang="en">
+
+<head> 
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJR Weather Forecast</title>
+</head>
+
+<body> 
+  <style>
+    /* Full-width input fields */
+.inputBox{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.subbutton {
+  background-color:black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 2px solid black;
+  border-radius:5px;
+  cursor: pointer;
+  width: 100%;
+  transition:0.3s;
+}
+.subbutton:hover{
+color:black;
+background-color:white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+color:white;
+  width: auto;
+  padding: 10px 18px;
+  border:2px solid black;
+  border-radius:5px;
+  background-color: black;
+  transition:0.3s
+}
+.cancelbtn:hover{
+color:black;
+background-color: transparent;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+.avatar {
+  font-size: 60px;
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.password {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+.modal2 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+@media only screen  and (max-width:600px){
+  .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+}
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.password {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+    
+    /* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  .loginopen{
+    display: block;
+  }
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+  }
+  
+  /* Fade in tabs */
+  @-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+.mt-3{
+  color: black;
+}
+svg.text-indigo-500.w-6.h-6.flex-shrink-0.mr-4{
+  color: black;
+}
+.fontlogo{
+    font-size: 45px;
+    padding-bottom: 10px;
+    color: black;
+}
+.far{
+  color: black;
+}
+.fas{
+  color: black;
+}
+.py-24 {
+/* padding-top: 6rem; */
+padding-bottom: 6rem;
+padding-top: 0rem !important;
+}
+.forpad{
+padding-top: 6rem !important;
+}
+.object-cover:hover{
+    scale: 1.1;
+}
+.bg-indigo-500{
+  background-color: black;
+  border:2px solid black;
+  transition: 0.3s;
+}
+.bg-indigo-500:hover{
+  color: black;
+  background-color: transparent;
+  border:2px solid black
+}
+.weatherhead{
+  height: 600px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat:no-repeat;
+  background-image: url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+}
+.overlay{
+  background-color: rgba(0, 0, 0, 0.288);
+  height: 600px;
+}
+.head1{
+  background-color: #ffffff85;
+  z-index: 11;
+}
+.result{
+    top:60px;
+    display: grid;
+    margin: 0 auto;
+    position: relative;
+    justify-content: start;
+    align-content: space-evenly;
+    align-items: start;
+    justify-items: start;
+    width: 1350px;
+    text-align: left;
+    color: white;
+}
+.centerDiv{
+  width: 100%;
+  padding: 50px;
+  margin:0 auto;
+}
+.headflex{
+  display: flex;
+  justify-content: center;
+}
+.searchbutton{
+  padding: 2px;
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: auto;
+  width: 80px;
+  margin-top: 10px;
+  margin-left: 40%;
+  transition: all 0.3s;
+}
+.searchbutton:hover{
+  color: black;
+  background-color: white;
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.66);
+}
+#searchbox{
+  width: 350px;
+  height: 35px;
+  border-radius: 20px;
+  transition:all 0.3s;
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.33);
+}
+#searchbox:focus{
+  outline: none;
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.66);
+}
+#searchbox:hover{
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.66);
+}
+input#searchbox[type=text]::placeholder{
+  text-align: center;
+  padding-left: 20px;
+  color: rgb(88, 88, 88);
+}
+input#searchbox, select, textarea{
+    text-align: center;
+    color: black;
+}
+.result{
+  position: relative;
+  left: ;
+}.cityname{
+  font-size: 45px;
+  font-weight: 600;
+}.degree{
+  font-size: 35px;
+}.humidity{
+  font-size: 25px;
+}
+@media only screen and (max-width:1350px) {
+  .result{
+    width: 100%;
+  }
+}
+@media only screen and (min-width:720px) {
+  #searchbox{
+    width: 720px;
+
+  }
+  .searchbutton{
+    margin-left: 325px;
+  }
+}
+  </style>
+   
+  <div class="weatherhead">
+  <div class="overlay">
+
+<div class="head1">
+{{>aftheader}}
+</div>
+
+
+  <div class="centerDiv">
+  <div class="headflex">
+    <div class="searchbar"> <form action="/city_name" method="post"><input type="text" placeholder="Enter City Name" name="cityname" id="searchbox"><br><button class="searchbutton" type="submit">Search</button></form> </div>
+  </div>
+  <div class="result">
+    <div class="cityname"><h2>{{name}},{{sys.country}}</h2></div>
+    <div class="degree"><span id="temp">temp</span>°C  {{weather.[0].main}} <p class="humidity"> {{main.humidity}}% humidity</p></div>
+        <div class="wind">Wind Speed {{wind.speed}}km/h</div>
+        <div class="ourtime">{{date_time_txt}}<span id="nowTime">This is time</span></div>
+
+  </div>
+  </div>
+
+
+</div>
+</div>
+<script>
+  const temp=document.getElementById("temp").innerHTML=parseInt('{{main.temp}}'-275);
+
+ function formatAMPM(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      return strTime;
+    }
+
+document.getElementById("nowTime").innerHTML=formatAMPM(new Date);
+
+</script>
+<section class="text-gray-600 body-font forpad">
+    <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+      <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Weather Forecast in our hand
+          <br class="hidden lg:inline-block">Day To Night Check Open Weather Update
+        </h1>
+        <p class="mb-8 leading-relaxed">Weather is the state of the atmosphere, describing for example the degree to which it is hot or cold, wet or dry, calm or stormy, clear or cloudy.
+        </p>
+        <div class="flex justify-center">
+          <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">LATEST UPDATE</button>
+        </div>
+      </div>
+      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+        <img class="object-cover object-center rounded" alt="hero" src="https://source.unsplash.com/1600x900/?weather
+        ">
+      </div>
+    </div>
+  </section>
+  <hr>
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="text-center mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4 forpad">ABOUT OF WEATHER</h1>
+        <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Weather is the day-to-day or hour-to-hour change in the atmosphere. Weather includes wind, lightning, storms, hurricanes, tornadoes, rain, hail, snow etc.
+</p>
+        <div class="flex mt-6 justify-center">
+          <div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
+        </div>
+      </div>
+      <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+        <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
+          <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5 flex-shrink-0">
+            <i style="font-size: 30px;" class="fas fa-dumbbell"></i>
+            </svg>
+          </div>
+          <div class="flex-grow">
+            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">THE CLOUDY</h2>
+            <p class="leading-relaxed text-base">Cloudy weather can be delightful and beautiful.
+</p>
+            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+            </a>
+          </div>
+        </div>
+        <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
+          <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5 flex-shrink-0">
+            <i style="font-size: 30px;"  class="far fa-clock"></i>
+          </div>
+          <div class="flex-grow">
+            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">THE RAIN</h2>
+            <p class="leading-relaxed text-base">Do not be angry with the rain; it simply does not know how to fall upwards.</p>
+            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
+          <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5 flex-shrink-0">
+            <i style="font-size: 30px;"  class="fas fa-fist-raised"></i>
+          </div>
+          <div class="flex-grow">
+            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">THE SUNNY</h2>
+            <p class="leading-relaxed text-base">Keep your face to the sun and you will never see the shadows.</p>
+            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">More Weather Main</button>
+    </div>
+  </section>
+  <hr>
+  <br><br><br><br>
+    <div class="text-center mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">WEATHER NEWS</h1>
+        <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Share Your Life Together</p>
+        <div class="flex mt-6 justify-center">
+        <div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
+        </div>
+    </div>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -m-4">
+            <div class="p-4 md:w-1/3">
+              <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://source.unsplash.com/720x400/?weather,rain" alt="blog">
+                <div class="p-6">
+                  <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+<h1 class="title-font text-lg font-medium text-gray-900 mb-3">What's the weather forecast fStates Grand Prix?</h1>
+                  <p class="leading-relaxed mb-3">A bit windy. Maximum temperature expected: 30 Celsius Chance of rain: 20%. SUNDAY, OCTOBER 24 – RACE WEATHER Conditions: Partly cloudy at first,...</p>
+                  <div class="flex items-center flex-wrap ">
+                    <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                      <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                    <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>1.2K
+                    </span>
+                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                      </svg>6
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/3">
+              <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://source.unsplash.com/720x400/?overnight,cold" alt="blog">
+                <div class="p-6">
+                  <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+                  <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Overnight cold front brings nice Friday weather</h1>
+                  <p class="leading-relaxed mb-3">Full disclosure, the forecast is still pretty uncertain for Monday and dependent on moisture availability and instability.</p>
+                  <div class="flex items-center flex-wrap">
+                    <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                      <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                    <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>1.2K
+                    </span>
+                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                      </svg>6
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/3">
+              <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://source.unsplash.com/720x400/?tornado,airport" alt="blog">
+                <div class="p-6">
+                  <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+                  <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Tornado impacts Brisbane Airport in supercell storm event</h1>
+                  <p class="leading-relaxed mb-3">More wild weather is on the way after a lightning show on Thursday in ... With thunderstorms and heavy rain forecast, there was a risk of...</p>
+                  <div class="flex items-center flex-wrap ">
+                    <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                      <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                    <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>1.2K
+                    </span>
+                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                      </svg>6
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -m-4">
+            <div class="p-4 md:w-1/3">
+              <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://source.unsplash.com/720x400/?winter,weather" alt="blog">
+                <div class="p-6">
+                  <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+                  <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Winter weather outlook: California drought could worsen, what else to expect</h1>
+                  <p class="leading-relaxed mb-3">But more-than-normal snow and rain is forecast for the Ohio Valley and some of the inland Northeast, from western Pennsylvania to western New...</p>
+                  <div class="flex items-center flex-wrap ">
+                    <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                      <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                    <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>1.2K
+                    </span>
+                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                      </svg>6
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/3">
+              <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://source.unsplash.com/720x400/?rain,weather" alt="blog">
+                <div class="p-6">
+                  <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+                  <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Bay Area weather: Hundreds without power as more rain storms to soak region</h1>
+                  <p class="leading-relaxed mb-3">Powerful storms are expected to hit the Bay Area this weekend, according the National Weather Service. (Ray Chavez/Bay Area News Group).</p>
+                  <div class="flex items-center flex-wrap">
+                    <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                      <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                    <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>1.2K
+                    </span>
+                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                      </svg>6
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/3">
+              <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://source.unsplash.com/720x400/?weather,morning" alt="blog">
+                <div class="p-6">
+                  <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+                  <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Metro Detroit weather: Chill coming after scattered morning showers</h1>
+                  <p class="leading-relaxed mb-3">Here is the weather forecast for Metro Detroit. Metro Detroit weather forecast for October 21, 2021 -- 7 a.m. Update. Here is the weather.</p>
+                  <div class="flex items-center flex-wrap ">
+                    <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
+                      <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                    <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>1.2K
+                    </span>
+                    <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                      <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                      </svg>6
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="text-center mb-20">
+            <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4 forpad">OUR SERVICES</h1>
+            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Several atmospheric river events will bring widespread moderate to heavy precipitation</p>
+          </div>
+          <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-indigo-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">Cloudy</span>
+              </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-indigo-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">Haze</span>
+              </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-indigo-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">Wind</span>
+              </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-indigo-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">Rainy</span>
+              </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-indigo-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">Snowy</span>
+              </div>
+            </div>
+            <div class="p-2 sm:w-1/2 w-full">
+              <div class="bg-gray-100 rounded flex p-4 h-full items-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="text-indigo-500 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                  <path d="M22 4L12 14.01l-3-3"></path>
+                </svg>
+                <span class="title-font font-medium">Sunny</span>
+              </div>
+            </div>
+          </div>
+          <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">EXTRA SERVICES</button>
+        </div>
+      </section>
+
+      <hr>
+      <div class="text-center mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4 forpad"> OUR PHOTOGRAPHY</h1>
+        <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">This is the image of latest weather update</p>
+        <div class="flex mt-6 justify-center">
+          <div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
+        </div>
+      </div>
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto flex flex-wrap">
+          <div class="flex flex-wrap md:-m-2 -m-1">
+            <div class="flex flex-wrap w-1/2">
+              <div class="md:p-2 p-1 w-1/2">
+                <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://source.unsplash.com/1600x900/?weather,forecast">
+              </div>
+              <div class="md:p-2 p-1 w-1/2">
+                <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://source.unsplash.com/1600x900/?rainy">
+              </div>
+              <div class="md:p-2 p-1 w-full">
+                <img alt="gallery" class="w-full h-full object-cover object-center block" src="https://source.unsplash.com/1600x900/?cloudy">
+              </div>
+            </div>
+            <div class="flex flex-wrap w-1/2">
+              <div class="md:p-2 p-1 w-full">
+                <img alt="gallery" class="w-full h-full object-cover object-center block" src="https://source.unsplash.com/1600x900/?haze">
+              </div>
+              <div class="md:p-2 p-1 w-1/2">
+                <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://source.unsplash.com/1600x900/?clouds,weather">
+              </div>
+              <div class="md:p-2 p-1 w-1/2">
+                <img alt="gallery" class="w-full object-cover h-full object-center block" src="https://source.unsplash.com/1600x900/?sunny">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <section class="text-gray-600 body-font">
+
+        <div class="text-center mb-20">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4 forpad"> USER INFROMATION</h1>
+            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Join with us to share your opportunity</p>
+            <div class="flex mt-6 justify-center">
+              <div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
+            </div>
+          </div>
+
+        <div class="container px-5 py-24 mx-auto">
+          
+          <div class="flex flex-wrap -m-4 text-center">
+            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                <i class="fas fa-user-plus fontlogo"></i>
+                <h2 class="title-font font-medium text-3xl text-gray-900">531</h2>
+                <p class="leading-relaxed">New Member</p>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                <i class="fas fa-users fontlogo"></i>     
+                    <h2 class="title-font font-medium text-3xl text-gray-900">1.3K</h2>
+                <p class="leading-relaxed">Total User</p>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                <i class="fas fa-thumbs-up fontlogo"></i>
+                <h2 class="title-font font-medium text-3xl text-gray-900">73%</h2>
+                <p class="leading-relaxed">User share there blog</p>
+              </div>
+            </div>
+            <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                <i class="fas fa-times-circle fontlogo"></i>
+                <h2 class="title-font font-medium text-3xl text-gray-900">35%</h2>
+                <p class="leading-relaxed">Created Own Weather Map</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+
+             <div class="text-center mb-20">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4 forpad"> CONTACT US</h1>
+            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Send your feedback</p>
+            <div class="flex mt-6 justify-center">
+              <div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
+            </div>
+          </div>
+
+
+<section class="text-gray-600 body-font relative">
+  <div class="absolute inset-0 bg-gray-300">
+    <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1824.6802855885978!2d90.17941980793458!3d23.84132670736697!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755edcec0c31765%3A0xbe8ee001a09ad91f!2z4Ka44KeB4KaZ4KeN4KaX4KawIOCmquCmmuCnjeCmtuCmv-CmriDgpqrgpr7gp5zgpr4g4Kac4Ka-4Kau4KeHIOCmruCmuOCmnOCmv-Cmpg!5e0!3m2!1sen!2sbd!4v1636990970626!5m2!1sen!2sbd" style="filter: grayscale(1) contrast(1.2) opacity(0.4);"></iframe>
+  </div>
+  <div class="container px-5 py-24 mx-auto flex forpad">
+    <div class="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
+      <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Contact Us</h2>
+      <p class="leading-relaxed mb-5 text-gray-600">if you have any issue by this website or want to connect with Admin (BJR) then contact us.</p>
+      <form action="/contact" method="post">
+      <div class="relative mb-4">
+        <label for="name" class="leading-7 text-sm text-gray-600">Full name</label>
+        <input type="text" id="email" name="name" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+      </div>
+      <div class="relative mb-4">
+        <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+        <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+      </div>
+      <div class="relative mb-4">
+        <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+        <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+      </div>
+      <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Send EMail</button>
+     </form>
+      <p class="text-xs text-gray-500 mt-3">*After send mail, Wait..for response</p>
+    </div>
+  </div>
+</section>
+         
+        </div>
+        </div>
+      </section>
+
+      <hr>
+      {{>footer}}
+</body>
+</html>

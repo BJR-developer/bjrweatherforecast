@@ -1,0 +1,243 @@
+<head>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+              <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+{{>aftheader}}
+
+<body>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .maincontainer{
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }.myprofile{
+      margin-left: 0;
+      padding: 10px;
+    }.mydetails{
+      display: flex;
+      flex-direction: column;
+      margin-left: 35px;
+      width: 700px;
+      padding: 10px;
+    }
+
+   
+    .profilecard {
+  background-color: rgb(0, 0, 0);
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  max-width: 300px;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: rgb(219, 219, 219);
+  font-size: 18px;
+}
+
+.cbutton {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  transition: all 0.3s;
+}
+.cbutton:hover{
+  color: black;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+}
+a.clogo {
+  text-decoration: none;
+  font-size: 22px;
+  color: rgb(255, 255, 255);
+}
+.pname{
+  color: white;
+  padding-top: 10px;
+  font-size: 22px;
+  font-weight: 700;
+}.myrow{
+  padding: 15px;
+}
+.rightPad{
+  padding-right: 5px;
+}.profileimg{
+  border: 5px solid white;
+  filter: drop-shadow(0 0 0.75rem rgb(212, 212, 212));
+  height: 300px;
+  width: 300px;
+  border-radius: 150px;
+}
+.myaddress{
+  font-weight: 700;
+  color: rgb(221, 221, 221);
+}
+ .editButton{
+   margin-top: -40px;
+   color: white;
+  background-color: black;
+  border:2px solid black;
+  border-radius: 5px;
+  width: 50px;
+  height: 30px;
+  transition: all 0.3s;
+  align-self: flex-end;
+  }.editButton:hover{
+    background-color: white;
+    color: black;
+    
+  }
+ .mydetailsedit{
+   display: none;
+   margin-left: 35px;
+      width: 700px;
+      padding: 10px;
+        transition: all 0.3s;
+
+ }
+ .editButtonSave{
+   display:none;
+       margin-top: -40px;
+   color: white;
+  background-color: black;
+  border:2px solid black;
+  border-radius: 5px;
+  width: 50px;
+  height: 30px;
+  transition: all 0.3s;
+  align-self: flex-end;
+
+ }
+  .editButtonSave:hover{
+    background-color: white;
+    color: black;
+  } input, optgroup, select, textarea {
+    padding: 0;
+    line-height: inherit;
+    float: right;
+    color: inherit;
+    border: 1px solid rgb(134, 134, 134);
+    border-radius: 4px;
+}
+input[type="text"]{
+      color: rgb(119, 119, 119);
+}
+input[type="text"]:focus{
+  border: 1px solid rgb(134, 134, 134);
+  outline: none;
+      color: rgb(0, 0, 0);
+}
+
+  </style>
+  <div class="maincontainer">
+    <div class="myprofile">
+      {{!-- <img src="../views/img/profile.img" alt="Profile Image" class="profileimg">
+      <div class="name">Jamilur Rahman</div>
+      <div class="skill">Full Stack Web Developer</div>
+      <button class="mybutton">Fiverr</button> --}}
+      <div class="profilecard">
+  <img class="profileimg" src="https://scontent.fdac1-1.fna.fbcdn.net/v/t39.30808-6/258753143_619758872495153_3450701566464727859_n.jpg?_nc_cat=110&_nc_rgb565=1&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeGfYWF1xIIuBRWYZ4OfDQS9Dx84PeaUAhYPHzg95pQCFsXcci4Le_Fo3MdVgvdpzPo3vVlredR8O9xe_qnB-QQV&_nc_ohc=tejVOPGukDQAX8l996m&tn=VMYEtrvbEkTuhfsx&_nc_zt=23&_nc_ht=scontent.fdac1-1.fna&oh=44493660645b971d86aae7a3730c1779&oe=619F34B3" alt="Profile" style="width:100%">
+  <h1 class="pname">{{fullname}}</h1>
+  <p class="title">{{skill}}</p>
+  <p class="myaddress">{{city}}</p>
+  <div style="margin: 24px 0;">
+    <a class="clogo" href="{{facebook}}"><i class="fab fa-facebook"></i></a> 
+    <a class="clogo" href="{{twitter}}"><i class="fab fa-twitter"></i></a>  
+    <a class="clogo" href="{{linkedin}}"><i class="fab fa-linkedin"></i></a>  
+    <a class="clogo" href="{{instagram}}"><i class="fab fa-instagram"></i></a> 
+  </div>
+  <p><a href="tel:+880{{number}}"></a><button class="cbutton">Contact</button></p>
+</div>
+
+    </div>
+    <div class="mydetails">
+      <div class="myrow"><i class="fas rightPad fa-briefcase"></i> Works at<b> {{work}} </b></span></div>
+      <div class="myrow"><i class="fas rightPad fa-user-graduate"></i> Studies at <b>{{education}}</b></span></div>
+      <div class="myrow"><i class="fas rightPad fa-home"></i> Lives in <b>{{city}}</b></span></div>
+      <div class="myrow"><i class="fas rightPad fa-heart"></i> {{relationship}}</div>
+      <div class="myrow"><i class="fas rightPad fa-envelope"></i> {{email}}</div>
+      <div class="myrow"><i class="fas rightPad fa-phone"></i> +880 {{number}}</div>
+    </div>
+    <div class="mydetailsedit">
+      <form id="ediform" action="/profileEdit" method="post">
+      <div class="myrow"><i class="fas rightPad fa-briefcase"></i><label for="Work Status">Work Status :</label> <input id="work" type="text" value="{{work}}" name="work" placeholder="Your Workplace"></span></div>
+      <div class="myrow"><i class="fas rightPad fa-briefcase"></i><label for="Main Skill">Your Main Skill :</label> <input id="skill" type="text" value="{{skill}}" name="skill" placeholder="Enter one Skill"></span></div>
+      <div class="myrow"><i class="fas rightPad fa-user-graduate"></i><label for="study">Studies :</label> <input id="education" type="text" value="{{education}}" name="education" placeholder="Current Education"> </span></div>
+      <div class="myrow"><i class="fas rightPad fa-home"></i><label for="Email Address">City Name :</label> <input id="city" type="text" value="{{city}}" name="hobby" placeholder="Enter City Name"> </div>
+      <div class="myrow"><i class="fas rightPad fa-heart"></i><label for="Relationship">Relationship Status : </label> 
+      <p><input type="radio" name="relationship" id="rel1" value="Single"> Single </p>
+      <p><input type="radio" name="relationship" id="rel2" value="In Relationship"> In Relationship</p>
+      <p><input type="radio" name="relationship" id="rel3" value="Married"> Married</p>
+      </div>
+      <div class="myrow"><i class="fas rightPad fa-phone"></i><label for="Phone Number">Phone Number :</label> <input id="number" type="text" value="{{number}}" name="number" placeholder="Enter Phone Number"></div>
+      <div class="myrow"><i class=" rightPad fab fa-facebook"></i><label for="Facebook">Facebook :</label> <input id="facebook" type="text" value="{{facebook}}" name="facebook" placeholder="Enter Facebook link"></div>
+      <div class="myrow"><i class=" rightPad fab fa-linkedin"></i><label for="Facebook">linkedin :</label> <input id="linkedin" type="text" value="{{linkedin}}" name="linkedin" placeholder="Enter linkedin link"></div>
+      <div class="myrow"><i class=" rightPad fab fa-instagram"></i><label for="Facebook">Instagram :</label> <input id="instagram" type="text" value="{{instagram}}" name="instagram" placeholder="Enter Instagram link"></div>
+      <div class="myrow"><i class=" rightPad fab fa-twitter"></i><label for="Facebook">Twitter :</label> <input id="twitter" type="text" value="{{twitter}}" name="twitter" placeholder="Enter Twitter link"></div>
+    </form>
+    </div>
+          <button onclick="mydetailseditOn()" class="editButton">Edit</button>
+          <button onclick="mydetailseditSave()" class="editButtonSave">Save</button>
+
+  </div>
+  <script>
+    
+
+
+    const work=document.getElementById("work").value;
+    const skill=document.getElementById("skill").value;
+    const education=document.getElementById("education").value;
+    const city=document.getElementById("city").value;
+    const number=document.getElementById("number").value;
+    const facebook=document.getElementById("facebook").value;
+    const linkedin=document.getElementById("linkedin").value;
+    const instagram=document.getElementById("instagram").value;
+    const twitter=document.getElementById("twitter").value; 
+
+
+    const mydetails=document.querySelector(".mydetails");
+    const mydetailsedit=document.querySelector(".mydetailsedit");
+    const editButtonSave=document.querySelector(".editButtonSave");
+    const editButton=document.querySelector(".editButton");
+    const formSubmit=document.querySelector("#ediform");
+
+
+    function mydetailseditOn(){
+            mydetails.style.display="none";
+            mydetailsedit.style.display="block";
+            editButtonSave.style.display="block";
+            editButton.style.display="none";
+
+    }
+    function mydetailseditSave(){
+            mydetails.style.display="block";
+            mydetailsedit.style.display="none";
+            editButtonSave.style.display="none";
+            editButton.style.display="block";
+            formSubmit.submit();
+    }
+  </script>
+</body>
